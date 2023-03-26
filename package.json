@@ -1,0 +1,33 @@
+{
+  "name": "@iamdual/html2pdf",
+  "version": "0.1.0",
+  "description": "HTML to PDF converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node ./src/rest-api"
+  },
+  "bin": {
+    "html2pdf": "./bin/index.js"
+  },
+  "author": "Ekin Karadeniz <iamdual@icloud.com>",
+  "homepage": "https://github.com/iamdual/html2pdf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamdual/html2pdf"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/iamdual"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^19.7.5",
+    "yargs": "13.2"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
