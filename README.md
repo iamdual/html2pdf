@@ -3,13 +3,15 @@ HTML to PDF converter provided by command line interface and RESTful API. Powere
 
 ## Installing
 ```
-npm install https://github.com/iamdual/html2pdf
+npm install -g https://github.com/iamdual/html2pdf
 ```
 
 ## Usage
 
 ### Command-line
 ```bash
+html2pdf '<!DOCTYPE html><strong>Hello world!</strong>' -o output.pdf
+
 html2pdf "https://www.google.com" --format A4 --timeout 10 -o google.pdf
 ```
 
@@ -40,7 +42,7 @@ curl -X POST 'http://localhost:3000/generate' \
 ## Parameters
 | Name       | Type    | Description                                                                                                                         |
 |------------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
-| source     | string  | Set PDF document source. It must be specified. The source can be a URL or an HTML.                                                  |
+| source     | string  | Set PDF document source. It must be specified. The source can be a URL or an HTML code.                                             |
 | timeout    | integer | Set connection timeout. Default is `10`.                                                                                            |
 | javascript | boolean | Enable JavaScripts. To enable, the value should be true. Disabled by default.                                                       |
 | pageRanges | string  | Set pages by the numbers and ranges. Example: `1,2-4`. All pages included by default.                                               |
