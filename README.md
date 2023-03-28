@@ -3,21 +3,54 @@ HTML to PDF converter provided by command line interface and RESTful API. Powere
 
 ## Installing
 ```
-npm install
+npm install https://github.com/iamdual/html2pdf
 ```
 
 ## Usage
 
 ### Command-line
+```bash
+html2pdf "https://www.google.com" --format A4 --timeout 10 -o google.pdf
 ```
-npm link
-html2pdf "https://google.com" -o google.pdf
+
+### Library
+```js
+const html2pdf = require("@iamdual/html2pdf");
+const config = html2pdf.config({source: 'https://google.com', format: 'A4', timeout: 10});
+html2pdf.generate(config).then(pdf => {
+    console.log('PDF generated!');
+    require('fs').writeFile('google.pdf', pdf, 'binary', err => {});
+});
 ```
 
 ### RESTful API
-```
+```bash
+git clone https://github.com/iamdual/html2pdf
 npm start
+
+curl -X POST 'http://localhost:3000/generate' \
+    --header 'Content-Type: application/json' \
+    --data '{
+        "source": "https://www.google.com",
+        "format": "A4",
+        "timeout": 10
+    }' > google.pdf
 ```
+
+## Parameters
+| Name       | Type    | Description                                                                                                                         |
+|------------|---------|-------------------------------------------------------------------------------------------------------------------------------------|
+| source     | string  | Set PDF document source. It must be specified. The source can be a URL or an HTML.                                                  |
+| timeout    | integer | Set connection timeout. Default is `10`.                                                                                            |
+| javascript | boolean | Enable JavaScripts. To enable, the value should be true. Disabled by default.                                                       |
+| pageRanges | string  | Set pages by the numbers and ranges. Example: `1,2-4`. All pages included by default.                                               |
+| mediaType  | string  | Set paper CSS media type. Must be one of `screen` or `print`. Default is `screen`.                                                  |
+| format     | string  | Set paper format. Must be one of `A0`, `A1`, `A2`, `A3`, `A4`, `A5`, `A6`, `Letter`, `Legal`, `Tabloid`, `Ledger`. Default is `A4`. |
+| width      | integer | Set PDF document width. Both height and width must be used together. It will disable `format` option.                               |
+| height     | integer | Set PDF document height. Both height and width must be used together. It will disable `format` option.                              |
+| scale      | float   | Set scale. The value must be greater than or equals to `0.1`, or lower then or equals to `2`. Default is `1`.                       |
+| landscape  | boolean | Enable landscape mode. To enable, the value should be true. Disabled by default.                                                    |
+| margin     | string  | Set margin(s) for the PDF document. It can be all four margin or specified by the values separated with space. Default is `0`.      |
 
 ## Author
 Ekin Karadeniz (iamdual@icloud.com)

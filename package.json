@@ -2,7 +2,7 @@
   "name": "@iamdual/html2pdf",
   "version": "0.1.0",
   "description": "HTML to PDF converter",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "mocha",
     "start": "node ./src/rest-api"

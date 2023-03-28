@@ -4,7 +4,7 @@
  * @source https://github.com/iamdual/html2pdf
  */
 
-module.exports = function parsedConfig(params) {
+module.exports = function configParser(params) {
 
     let config = {
         source: null,
@@ -61,6 +61,14 @@ module.exports = function parsedConfig(params) {
     }
 
     /**
+     * pageRanges
+     * Set pages by the numbers and ranges. Example: 1, 2-4. All pages included by default.
+     */
+    if (typeof params.pageRanges === 'string') {
+        config.pageRanges = params.pageRanges;
+    }
+
+    /**
      * mediaType
      * Set paper CSS media type. Must be one of "screen" or "print". Default is "screen".
      */
@@ -70,15 +78,7 @@ module.exports = function parsedConfig(params) {
             config.mediaType = _mediaType;
         }
     }
-
-    /**
-     * pageRanges
-     * Set pages by the numbers and ranges. Example: 1, 2-4. All pages included by default.
-     */
-    if (typeof params.pageRanges === 'string') {
-        config.pageRanges = params.pageRanges;
-    }
-
+    
     /**
      * format
      * Set paper format. Must be one of "A0", "A1", "A2", "A3", "A4", "A5", "A6", "Letter", "Legal", "Tabloid", "Ledger". Default is "A4".
@@ -130,9 +130,9 @@ module.exports = function parsedConfig(params) {
 
     /**
      * margin
-     * Set margin(s) for the page in pixel. It can be all four margin or specified by the values separated with space. Default is "0".
-     * Example: The given value "10", will set margin top, right, bottom and left to 10px.
-     *          The given value "10 20 30 40", will set margin top to 10px, right to 20px, bottom to 30px and left to 40px.
+     * Set margin(s) for the PDF document. It can be all four margin or specified by the values separated with space. Default is 0.
+     * Example: The given value "10" will set margin top, right, bottom and left to 10px.
+     *          The given value "10 20 30 40" will set margin top to 10px, right to 20px, bottom to 30px and left to 40px.
      */
     if (typeof params.margin !== 'undefined') {
         let _margins = [];
