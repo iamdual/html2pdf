@@ -5,14 +5,18 @@
  */
 
 const puppeteer = require('puppeteer');
-const chromiumPath = process.env.CHROMIUM_PATH ? process.env.CHROMIUM_PATH : undefined;
+
+let args = [];
+if (process.env.HTML2PDF_NO_SANDBOX) {
+    args.push('--no-sandbox')
+}
 
 module.exports = async function generator(config) {
 
     // Create a browser instance
     const browser = await puppeteer.launch({
         headless: true,
-        executablePath: chromiumPath,
+        args: args
     });
 
     // Create a new page

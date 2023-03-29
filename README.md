@@ -1,35 +1,10 @@
 # html2pdf
-HTML to PDF converter provided by command line interface and RESTful API. Powered by `puppeteer`.
-
-## Installing
-```
-npm install -g https://github.com/iamdual/html2pdf
-```
+An HTML to PDF converter provided by RESTful API and command-line tool. Powered by `puppeteer`.
 
 ## Usage
 
-### Command-line
-```bash
-html2pdf '<!DOCTYPE html><strong>Hello world!</strong>' -o output.pdf
-
-html2pdf "https://www.google.com" --format A4 --timeout 10 -o google.pdf
-```
-
-### Library
-```js
-const html2pdf = require("@iamdual/html2pdf");
-const config = html2pdf.config({source: 'https://google.com', format: 'A4', timeout: 10});
-html2pdf.generate(config).then(pdf => {
-    console.log('PDF generated!');
-    require('fs').writeFile('google.pdf', pdf, 'binary', err => {});
-});
-```
-
 ### RESTful API
 ```bash
-git clone https://github.com/iamdual/html2pdf
-npm start
-
 curl -X POST 'http://localhost:3000/generate' \
     --header 'Content-Type: application/json' \
     --data '{
@@ -37,6 +12,13 @@ curl -X POST 'http://localhost:3000/generate' \
         "format": "A4",
         "timeout": 10
     }' > google.pdf
+```
+
+### Command-line
+```bash
+npm install -g https://github.com/iamdual/html2pdf
+html2pdf '<!DOCTYPE html><strong>Hello world!</strong>' -o output.pdf
+html2pdf "https://www.google.com" --format A4 --timeout 10 -o google.pdf
 ```
 
 ## Parameters

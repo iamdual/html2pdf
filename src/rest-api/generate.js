@@ -10,6 +10,11 @@ const generator = require('../generator');
 
 module.exports = async function generate(req, res) {
 
+    if (!['GET', 'POST'].includes(req.method)) {
+        res.status(405).json({ error: 'INVALID_METHOD', errorMessage: 'Method not allowed.' });
+        return;
+    }
+
     let config;
     if (req.method === 'POST') {
         config = configParser(req.body);
@@ -31,6 +36,9 @@ module.exports = async function generate(req, res) {
         if (error instanceof puppeteer.TimeoutError) {
             res.status(408).json({ error: 'TIMEOUT', errorMessage: 'Request timeout.' });
             return;
+        }
+        if (process.env.NODE_ENV === 'development') {
+            console.log(error);
         }
         res.status(500).json({ error: 'SERVER_ERROR', errorMessage: 'We are unable to fulfill your request.' });
     }
