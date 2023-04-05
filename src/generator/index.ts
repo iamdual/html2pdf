@@ -49,7 +49,7 @@ export default async (config: Config) => {
     height: config.height,
     scale: config.scale,
     landscape: config.landscape,
-    margin: config.margin.toUnits(),
+    margin: config.margin,
   });
 
   // Close the browser instance

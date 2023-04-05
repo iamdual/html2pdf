@@ -7,7 +7,6 @@
 import { PaperFormat, PDFMargin } from "puppeteer";
 
 export default class Config {
-  static defaultUnit: string = "px";
   static defaultFormat: PaperFormat = "A4";
   static formatList: PaperFormat[] = [
     "A0",
@@ -131,9 +130,16 @@ export default class Config {
           break;
         case "margin":
           if (typeof params[param] === "string") {
-            this.margin = new Margin().fromString(params[param]);
+            this.margin = Margin.fromString(params[param]);
           } else if (params[param] instanceof Margin) {
             this.margin = params[param];
+          } else if (Margin.isImplements(params[param])) {
+            this.margin = new Margin(
+              params[param].top,
+              params[param].right,
+              params[param].bottom,
+              params[param].left
+            );
           }
           break;
       }
@@ -143,11 +149,16 @@ export default class Config {
 
 export class Margin implements PDFMargin {
   top?: string | number;
+  right?: string | number;
   bottom?: string | number;
   left?: string | number;
-  right?: string | number;
 
-  constructor(top?: number, right?: number, bottom?: number, left?: number) {
+  constructor(
+    top?: string | number,
+    right?: string | number,
+    bottom?: string | number,
+    left?: string | number
+  ) {
     this.top = top ?? 0;
     this.right = right ?? 0;
     this.bottom = bottom ?? 0;
@@ -165,27 +176,24 @@ export class Margin implements PDFMargin {
     }
   }
 
-  fromString(margins: string): Margin {
+  static fromString(margins: string): Margin {
     const _margins = margins.split(" ", 4);
     if (_margins.length === 1) {
-      return new Margin(parseInt(_margins[0]));
+      return new Margin(_margins[0]);
+    } else if (_margins.length === 2) {
+      return new Margin(_margins[0], _margins[1], _margins[0], _margins[1]);
     } else if (_margins.length === 4) {
-      return new Margin(
-        parseInt(_margins[0]),
-        parseInt(_margins[1]),
-        parseInt(_margins[2]),
-        parseInt(_margins[3])
-      );
+      return new Margin(_margins[0], _margins[1], _margins[2], _margins[3]);
     }
     return new Margin();
   }
 
-  toUnits(): PDFMargin {
-    return {
-      top: (this.top ?? 0) + Config.defaultUnit,
-      right: (this.right ?? 0) + Config.defaultUnit,
-      bottom: (this.bottom ?? 0) + Config.defaultUnit,
-      left: (this.left ?? 0) + Config.defaultUnit,
-    };
+  static isImplements(obj: any): boolean {
+    return (
+      ["string", "number", "undefined"].includes(typeof obj.top) &&
+      ["string", "number", "undefined"].includes(typeof obj.right) &&
+      ["string", "number", "undefined"].includes(typeof obj.bottom) &&
+      ["string", "number", "undefined"].includes(typeof obj.left)
+    );
   }
 }

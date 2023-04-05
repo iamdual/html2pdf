@@ -10,6 +10,9 @@ import generate from "./generate";
 export const route: Express = express();
 route.use(express.json());
 route.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
+  if (err !== undefined && process.env.NODE_ENV === "development") {
+    console.error(err);
+  }
   if (err instanceof SyntaxError) {
     res
       .status(400)

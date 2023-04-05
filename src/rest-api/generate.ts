@@ -44,7 +44,7 @@ export default async (req: Request, res: Response) => {
       return;
     }
     if (process.env.NODE_ENV === "development") {
-      console.log(error);
+      console.error(error);
     }
     res.status(500).json({
       error: "SERVER_ERROR",
