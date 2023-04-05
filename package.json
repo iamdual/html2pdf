@@ -5,7 +5,8 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "npx tsc && mocha ./dist/test",
-    "start": "npx tsc && node ./dist/src/rest-api"
+    "start": "npx tsc && node ./dist/src/rest-api",
+    "clean": "rm -rf ./dist"
   },
   "bin": {
     "html2pdf": "./bin/index.js"
@@ -32,7 +33,7 @@
     "@types/jest": "^29.5.0"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.1",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "@types/mocha": "^10.0.1"
   }
 }
