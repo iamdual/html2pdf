@@ -4,16 +4,16 @@ An HTML to PDF converter provided by RESTful API and command-line tool. Powered 
 ## RESTful API
 The best reason to use this method is that we can use it on any programming languages and software that support HTTP requests.
 
-### Start server with npm
-```bash
-git clone https://github.com/iamdual/html2pdf
-npm install --production
-npm start
-```
-
-### Start server with Docker
+### Start server with Docker (recommended)
 ```bash
 docker run -p 3000:3000 iamdual/html2pdf
+```
+
+### Start server with source
+```bash
+git clone https://github.com/iamdual/html2pdf && cd html2pdf
+npm install
+npm start
 ```
 
 ### Example usage (JSON POST)
