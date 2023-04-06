@@ -12,7 +12,7 @@ if (process.env.HTML2PDF_NO_SANDBOX) {
   args.push("--no-sandbox");
 }
 
-export default async (config: Config) => {
+export default async (config: Config): Promise<Buffer> => {
   // Create a browser instance
   const browser = await puppeteer.launch({
     headless: true,
@@ -30,6 +30,11 @@ export default async (config: Config) => {
 
   // Set CSS media type
   await page.emulateMediaType(config.mediaType);
+
+  if (config.userAgent) {
+    // Set user-agent
+    await page.setUserAgent(config.userAgent);
+  }
 
   if (config.isUrl) {
     // https://pptr.dev/api/puppeteer.page.goto

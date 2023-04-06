@@ -35,6 +35,8 @@ export default class Config {
   readonly scale: number = 1;
   readonly landscape: boolean = false;
   readonly margin: Margin = new Margin();
+  readonly userAgent?: string;
+  readonly base64: boolean = false;
 
   constructor(params?: { [key: string]: any }) {
     for (const param in params) {
@@ -140,6 +142,19 @@ export default class Config {
               params[param].bottom,
               params[param].left
             );
+          }
+          break;
+        case "userAgent":
+          if (typeof params[param] === "string") {
+            this.userAgent = params[param];
+          }
+          break;
+        case "base64":
+          if (
+            typeof params[param] === "string" ||
+            typeof params[param] === "boolean"
+          ) {
+            this.base64 = params[param];
           }
           break;
       }

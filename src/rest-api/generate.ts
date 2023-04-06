@@ -33,6 +33,13 @@ export default async (req: Request, res: Response) => {
 
   try {
     const pdf = await Generator(config);
+
+    if (config.base64) {
+      res.set("Content-Type", "text/plain");
+      res.status(200).send(Buffer.from(pdf).toString("base64"));
+      return;
+    }
+
     res.set("Content-Type", "application/pdf");
     res.status(200).send(pdf);
     return;

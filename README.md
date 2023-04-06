@@ -64,6 +64,8 @@ html2pdf ./example.html --format A4 --pageRanges 1 -o example.pdf
 | scale      | float   | Set scale. The value must be greater than or equals to `0.1`, or lower than or equals to `2`. Default is `1`.                       |
 | landscape  | boolean | Enable landscape mode. To enable, the value should be true. Disabled by default.                                                    |
 | margin     | string  | Set margin(s) for the PDF document. It can be all four margin or specified by the values separated with space. Default is `0`.      |
+| userAgent  | string  | Set custom user-agent string.                                                                                                       |
+| base64     | boolean | Return the PDF as a base64-encoded string (REST API only).                                                                          |
 
 ## Author
 
