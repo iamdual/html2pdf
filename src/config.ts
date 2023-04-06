@@ -123,10 +123,9 @@ export default class Config {
           }
           break;
         case "landscape":
-          if (
-            typeof params[param] === "string" ||
-            typeof params[param] === "boolean"
-          ) {
+          if (typeof params[param] === "string") {
+            this.landscape = ["true", "1"].includes(params[param]);
+          } else if (typeof params[param] === "boolean") {
             this.landscape = params[param];
           }
           break;
@@ -150,10 +149,9 @@ export default class Config {
           }
           break;
         case "base64":
-          if (
-            typeof params[param] === "string" ||
-            typeof params[param] === "boolean"
-          ) {
+          if (typeof params[param] === "string") {
+            this.base64 = ["true", "1"].includes(params[param]);
+          } else if (typeof params[param] === "boolean") {
             this.base64 = params[param];
           }
           break;

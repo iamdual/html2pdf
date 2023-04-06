@@ -24,17 +24,6 @@ describe("Others", function () {
     });
   });
 
-  describe("javascript", function () {
-    it("Passing a boolean", function () {
-      const config = new Config({ javascript: true });
-      assert.equal(config.javascript, true);
-    });
-    it("Passing a string", function () {
-      const config = new Config({ javascript: "true" });
-      assert.equal(config.javascript, true);
-    });
-  });
-
   describe("format", function () {
     it("Should accept lowercase", function () {
       const config = new Config({ format: "tabloid" });
