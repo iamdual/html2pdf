@@ -2,14 +2,13 @@
   "name": "@iamdual/html2pdf",
   "version": "1.1.0",
   "description": "HTML to PDF converter",
-  "main": "./src/index.js",
   "scripts": {
     "test": "npx tsc && mocha ./dist/test",
     "start": "npx tsc && node ./dist/src/rest-api",
     "clean": "rm -rf ./dist"
   },
   "bin": {
-    "html2pdf": "./bin/index.js"
+    "html2pdf": "./dist/bin/index.js"
   },
   "author": "Ekin Karadeniz <iamdual@icloud.com>",
   "homepage": "https://github.com/iamdual/html2pdf",
