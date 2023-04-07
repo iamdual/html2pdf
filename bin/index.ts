@@ -50,7 +50,7 @@ const panic = (message: string | NodeJS.ErrnoException) => {
   process.exit(1);
 };
 
-let config = new Config();
+let config = new Config(argv);
 
 // Check is source is an exiting file
 if (!config.isUrl && existsSync(argv.source)) {

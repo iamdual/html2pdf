@@ -43,7 +43,10 @@ curl 'http://localhost:3000/generate?source=https://google.com&timeout=10' > goo
 It also support for command-line interface, so you can convert easily to a PDF.
 
 ```bash
-npm install -g https://github.com/iamdual/html2pdf
+git clone https://github.com/iamdual/html2pdf && cd html2pdf
+npm install
+npm run build
+sudo npm link
 html2pdf '<!DOCTYPE html><strong>Hello world!</strong>' -o output.pdf
 html2pdf "https://www.google.com" --format A4 --timeout 10 -o google.pdf
 html2pdf ./example.html --format A4 --pageRanges 1 -o example.pdf

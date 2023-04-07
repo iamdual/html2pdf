@@ -1,11 +1,15 @@
 {
   "name": "@iamdual/html2pdf",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "HTML to PDF converter",
   "scripts": {
-    "test": "npx tsc && mocha ./dist/test",
-    "start": "npx tsc && node ./dist/src/rest-api",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./dist",
+    "prebuild": "npm run clean",
+    "build": "npx tsc",
+    "pretest": "npm run build",
+    "test": "mocha ./dist/test",
+    "prestart": "npm run build",
+    "start": "node ./dist/src/rest-api"
   },
   "bin": {
     "html2pdf": "./dist/bin/index.js"
