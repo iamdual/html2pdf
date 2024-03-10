@@ -1,4 +1,4 @@
-FROM alpine:3.17.1
+FROM alpine
 
 RUN apk add --no-cache \
     chromium \
@@ -10,12 +10,11 @@ RUN apk add --no-cache \
     nodejs \
     npm
 
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV HTML2PDF_NO_SANDBOX=true
 
 WORKDIR /app
-COPY ["package.json", "package-lock.json", "./"]
-RUN npm install --production
+COPY ["package.json", "./"]
+RUN npm install
 COPY . .
 CMD ["npm", "start"]
