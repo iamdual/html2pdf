@@ -17,7 +17,8 @@ docker run -p 3000:3000 iamdual/html2pdf
 ```bash
 git clone https://github.com/iamdual/html2pdf && cd html2pdf
 npm install
-npm start
+npm run build
+npm run start
 ```
 
 ### API request with POST JSON
