@@ -41,7 +41,7 @@ export default async (req: Request, res: Response) => {
     }
 
     res.set("Content-Type", "application/pdf");
-    res.status(200).send(pdf);
+    res.status(200).send(Buffer.from(pdf));
     return;
   } catch (error) {
     if (error instanceof TimeoutError) {

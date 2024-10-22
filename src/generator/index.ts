@@ -12,7 +12,7 @@ if (process.env.HTML2PDF_NO_SANDBOX) {
   args.push("--no-sandbox");
 }
 
-export default async (config: Config): Promise<Buffer> => {
+export default async (config: Config): Promise<Uint8Array> => {
   // Create a browser instance
   const browser = await puppeteer.launch({
     headless: true,
@@ -38,10 +38,10 @@ export default async (config: Config): Promise<Buffer> => {
 
   if (config.isUrl) {
     // https://pptr.dev/api/puppeteer.page.goto
-    await page.goto(config.source, { waitUntil: "networkidle0" });
+    await page.goto(config.source, { waitUntil: "networkidle2" });
   } else {
     // https://pptr.dev/api/puppeteer.page.setcontent
-    await page.setContent(config.source, { waitUntil: "networkidle0" });
+    await page.setContent(config.source, { waitUntil: "networkidle2" });
   }
 
   // https://pptr.dev/api/puppeteer.pdfoptions
