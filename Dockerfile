@@ -19,8 +19,6 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm install
 
-COPY . .
-RUN npm run clean
-RUN npm run build
+COPY dist/ ./dist/
 
 CMD ["npm", "run", "start"]

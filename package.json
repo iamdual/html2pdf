@@ -1,6 +1,6 @@
 {
   "name": "@iamdual/html2pdf",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "HTML to PDF converter",
   "scripts": {
     "clean": "rimraf ./dist",

@@ -9,7 +9,7 @@ The best reason to use this method is that we can use it on any programming lang
 ### Start server with Docker (recommended)
 
 ```bash
-docker run -p 3000:3000 iamdual/html2pdf
+docker run -td -p 3000:3000 iamdual/html2pdf
 ```
 
 ### Start server with source
