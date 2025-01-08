@@ -54,7 +54,10 @@ export default async (config: Config): Promise<Uint8Array> => {
     height: config.height,
     scale: config.scale,
     landscape: config.landscape,
-    margin: config.margin,
+    margin: config.margin,    
+    displayHeaderFooter: config.displayHeaderFooter,
+    headerTemplate: config.headerTemplate,
+    footerTemplate: config.footerTemplate,
   });
 
   // Close the browser instance

@@ -36,4 +36,23 @@ describe("Others", function () {
       assert.equal(config.height, 200);
     });
   });
+
+  describe("header", function () {
+    it("Should have header", function () {
+      const config = new Config({ headerTemplate: "<div>Header</div>" });
+      assert.equal(config.headerTemplate, "<div>Header</div>");
+      assert.equal(config.footerTemplate, "<div/>");
+      assert.equal(config.displayHeaderFooter, true);
+    });
+    it("Should have footer", function () {
+      const config = new Config({ footerTemplate: "<div>footer</div>" });
+      assert.equal(config.headerTemplate, "<div/>");
+      assert.equal(config.footerTemplate, "<div>footer</div>");
+      assert.equal(config.displayHeaderFooter, true);
+    });
+    it("Should display header be false", function () {
+      const config = new Config({ width: 100, height: 200, format: "A2" });
+      assert.equal(config.displayHeaderFooter, false);
+    });
+  });
 });

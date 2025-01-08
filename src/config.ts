@@ -37,6 +37,9 @@ export default class Config {
   readonly margin: Margin = new Margin();
   readonly userAgent?: string;
   readonly base64: boolean = false;
+  readonly displayHeaderFooter: boolean = false;
+  readonly headerTemplate: string = "<div/>";
+  readonly footerTemplate: string = "<div/>";
 
   constructor(params?: { [key: string]: any }) {
     for (const param in params) {
@@ -153,6 +156,18 @@ export default class Config {
             this.base64 = ["true", "1"].includes(params[param]);
           } else if (typeof params[param] === "boolean") {
             this.base64 = params[param];
+          }
+          break;
+        case "headerTemplate":
+          if (typeof params[param] === "string") {
+            this.headerTemplate = params[param];
+            this.displayHeaderFooter = true;
+          }
+          break;
+        case "footerTemplate":
+          if (typeof params[param] === "string") {
+            this.footerTemplate = params[param];
+            this.displayHeaderFooter = true;
           }
           break;
       }
